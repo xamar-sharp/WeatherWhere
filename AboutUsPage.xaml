@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWhere.AboutUsPage" Title="О нас" xmlns:local="clr-namespace:WeatherWhere.Services">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#AAFFFFFF" VerticalOptions="CenterAndExpand">
+                    <Label Text="{x:Static local:Constants.AboutUs}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" FontFamily="OpenSans" FontSize="{DynamicResource TextFontSize}" />
+                </Frame>
+                <Frame BackgroundColor="#AAFFFFFF" Margin="15,0,15,15" VerticalOptions="CenterAndExpand" HeightRequest="128">
+                    <ScrollView>
+                        <Label Text="{x:Static local:Constants.OurContacts}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontFamily="OpenSans" FontSize="{DynamicResource TextFontSize}"/>
+                    </ScrollView>
+                </Frame>
+                <Button Text="О планах на будущее" FontSize="{DynamicResource TextFontSize}" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

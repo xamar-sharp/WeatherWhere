@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWhere.CityChangePage" Title="Изменить Город" xmlns:local="clr-namespace:WeatherWhere.Services">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10">
+                <Frame BackgroundColor="#AAFFFFFF">
+                    <Label FontFamily="OpenSans" Text="{DynamicResource CurrentCityNameResource}" FontSize="{DynamicResource TitleFontSize}"/>
+                </Frame>
+                <Frame BackgroundColor="#AAFFFFFF">
+                    <SearchBar FontSize="{DynamicResource TextFontSize}" CancelButtonColor="BlueViolet" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchCommand}"/>
+                </Frame>
+                <Frame BackgroundColor="#AAFFFFFF">
+                    <ScrollView>
+                        <CollectionView ItemsSource="{Binding AllCities}" SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" FontFamily="OpenSans" FontSize="{DynamicResource TextFontSize}"/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

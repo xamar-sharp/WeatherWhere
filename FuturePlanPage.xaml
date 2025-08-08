@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWhere.FuturePlanPage" Title="Планы на будущее" xmlns:local="clr-namespace:WeatherWhere.Services">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10">
+                <Frame BackgroundColor="#AAFFFFFF" VerticalOptions="CenterAndExpand" 
+  HorizontalOptions="CenterAndExpand">
+                    <Label Text="Мы реализуем в будущем:" FontFamily="OpenSans" FontSize="{DynamicResource TitleFontSize}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame Margin="15,0,15,15" BackgroundColor="#AAFFFFFF" VerticalOptions="CenterAndExpand" 
+  HorizontalOptions="CenterAndExpand">
+                    <ScrollView>
+                        <Label Text="{x:Static local:Constants.FuturePlan}" FontFamily="OpenSans" FontSize="{DynamicResource TextFontSize}"/>
+                    </ScrollView>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

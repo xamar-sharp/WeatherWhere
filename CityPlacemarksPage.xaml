@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWhere.CityPlacemarksPage" Title="Интересные места">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10">
+                <Frame BackgroundColor="#AAFFFFFF" VerticalOptions="CenterAndExpand">
+                    <Label FontFamily="Roboto" Text="Достопримечательности города:" FontSize="{DynamicResource TitleFontSize}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BackgroundColor="#AAFFFFFF" Margin="15,0,15,15" VerticalOptions="CenterAndExpand">
+                    <Label FontFamily="Roboto" Text="{Binding PlacemarksInfo}" FontSize="{DynamicResource TextFontSize}"/>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

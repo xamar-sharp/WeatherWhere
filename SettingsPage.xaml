@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Настройки"
+             x:Class="WeatherWhere.SettingsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="CenterAndExpand">
+                <Button FontFamily="OpenSans" Text="Изменить город" Command="{Binding GoToChangeCityPageCommand}" FontSize="{DynamicResource TextFontSize}"/>
+                <Frame BackgroundColor="#AAFFFFFF">
+                    <VerticalStackLayout Spacing="10">
+                        <VerticalStackLayout Spacing="10">
+                            <Image Source="mute.png" HeightRequest="75" WidthRequest="75" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MuteCommand}" NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Slider Value="{Binding Volume,Mode=TwoWay}" Margin="15" ThumbImageSource="volume.png" Scale="1.2"/>
+                        </VerticalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label FontFamily="OpenSans" Text="Размер шрифта заголовков:" FontSize="{DynamicResource TextFontSize}" VerticalOptions="CenterAndExpand"/>
+                            <Entry Text="{Binding TitleFontSize,Mode=TwoWay}" HeightRequest="40" WidthRequest="80"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label FontFamily="OpenSans" Text="Размер шрифта текста:" FontSize="{DynamicResource TextFontSize}" VerticalOptions="CenterAndExpand"/>
+                            <Entry Text="{Binding TextFontSize,Mode=TwoWay}" WidthRequest="80"/>
+                        </HorizontalStackLayout>
+                        <Image x:Name="notIcon" HeightRequest="75" Source="{Binding ., Converter={x:StaticResource imgConv},ConverterParameter='enablenotifications.png'}" WidthRequest="75" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NotificationsStateChangedCommand}" CommandParameter="{x:Reference notIcon}" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

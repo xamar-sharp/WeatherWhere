@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWhere.CurrentWeatherPage" Title="Текущая погода" xmlns:local="clr-namespace:WeatherWhere.Services">
+    <ContentPage.Content>
+        <ScrollView x:Name="scroll">
+            <VerticalStackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#77FFFFFF" Margin="5">
+                    <Grid ColumnSpacing="10" RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label BackgroundColor="#AAFFFFFF" Text="{DynamicResource CurrentCityNameResource}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontFamily="HelveticaNeue" FontSize="{DynamicResource TextFontSize}" Grid.Column="0" Grid.Row="0"/>
+                        <Image BackgroundColor="#AAFFFFFF" HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="weathertab.png" Grid.Column="1" Grid.Row="0" />
+                        <Image BackgroundColor="#AAFFFFFF" HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="thermometer.png" Grid.Column="2" Grid.Row="0"/>
+                        <Image BackgroundColor="#AAFFFFFF" HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="wind.png" Grid.Column="3" Grid.Row="0"/>
+                        <Label Text="{Binding Data.dt,Converter={StaticResource unixConverter}}" Grid.Column="0" FontFamily="HelveticaNeue" FontSize="{DynamicResource TextFontSize}" HorizontalTextAlignment="Center" Grid.Row="1"/>
+                        <Image x:Name="weatherImg" Grid.Column="1" HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="1"/>
+                        <Label Text="{Binding Data.main.temp,StringFormat='{0} °C'}" Grid.Column="2" FontFamily="HelveticaNeue" FontSize="{DynamicResource TextFontSize}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Grid.Row="1"/>
+                        <Label Text="{Binding Data.wind.speed,StringFormat='{0} м/с'}" Grid.Column="3" FontFamily="HelveticaNeue" FontSize="{DynamicResource TextFontSize}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Grid.Row="1"/>
+                    </Grid>
+                </Frame>
+                <Button FontSize="{DynamicResource TextFontSize}" Command="{Binding GoToFiveDaysWeatherPage}" Text="К прогнозу погоды на 5 дней" />
+                <Button FontSize="{DynamicResource TextFontSize}" Command="{Binding GoToWeatherDetailsPage}" Text="Больше о погоде на сегодня"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

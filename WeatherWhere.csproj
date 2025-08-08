@@ -1,0 +1,312 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>WeatherWhere</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>WeatherWhere</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.weatherwhere</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<AndroidSigningKeyStore>my-release-key.jks</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningStorePass>12345678</AndroidSigningStorePass>
+	  <AndroidSigningKeyPass>12345678</AndroidSigningKeyPass>
+	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningStorePass>12345678</AndroidSigningStorePass>
+	  <AndroidSigningKeyPass>12345678</AndroidSigningKeyPass>
+	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+
+		<!-- Splash Screen -->
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\abuja.jpg" />
+	  <MauiImage Remove="Resources\Images\amsterdam.jpg" />
+	  <MauiImage Remove="Resources\Images\baghdad.jpg" />
+	  <MauiImage Remove="Resources\Images\bangkok.jpg" />
+	  <MauiImage Remove="Resources\Images\beijing.png" />
+	  <MauiImage Remove="Resources\Images\berlin.jpg" />
+	  <MauiImage Remove="Resources\Images\bern.jpg" />
+	  <MauiImage Remove="Resources\Images\bogota.jpg" />
+	  <MauiImage Remove="Resources\Images\brasilia.jpg" />
+	  <MauiImage Remove="Resources\Images\brussels.jpg" />
+	  <MauiImage Remove="Resources\Images\buenosaires.jpg" />
+	  <MauiImage Remove="Resources\Images\cairo.jpg" />
+	  <MauiImage Remove="Resources\Images\canberra.jpg" />
+	  <MauiImage Remove="Resources\Images\capetown.jpg" />
+	  <MauiImage Remove="Resources\Images\caracas.jpg" />
+	  <MauiImage Remove="Resources\Images\cloudnesspercents.png" />
+	  <MauiImage Remove="Resources\Images\cloudy1.jpg" />
+	  <MauiImage Remove="Resources\Images\cloudywithsun.jpg" />
+	  <MauiImage Remove="Resources\Images\copenhagen.jpg" />
+	  <MauiImage Remove="Resources\Images\delhi.jpg" />
+	  <MauiImage Remove="Resources\Images\dhaka.jpg" />
+	  <MauiImage Remove="Resources\Images\disablenotifications.png" />
+	  <MauiImage Remove="Resources\Images\dubai.jpg" />
+	  <MauiImage Remove="Resources\Images\dull.jpg" />
+	  <MauiImage Remove="Resources\Images\enablenotifications.png" />
+	  <MauiImage Remove="Resources\Images\hanoi.jpg" />
+	  <MauiImage Remove="Resources\Images\helsinki.jpg" />
+	  <MauiImage Remove="Resources\Images\humiditytab.png" />
+	  <MauiImage Remove="Resources\Images\islamabad.jpg" />
+	  <MauiImage Remove="Resources\Images\istanbul.jpg" />
+	  <MauiImage Remove="Resources\Images\jakarta.jpg" />
+	  <MauiImage Remove="Resources\Images\kabul.jpg" />
+	  <MauiImage Remove="Resources\Images\kamchatka.jpg" />
+	  <MauiImage Remove="Resources\Images\kualalumpur.jpg" />
+	  <MauiImage Remove="Resources\Images\lima.jpg" />
+	  <MauiImage Remove="Resources\Images\london.jpg" />
+	  <MauiImage Remove="Resources\Images\madrid.jpg" />
+	  <MauiImage Remove="Resources\Images\manila.jpg" />
+	  <MauiImage Remove="Resources\Images\mexicocity.jpg" />
+	  <MauiImage Remove="Resources\Images\moscow.jpg" />
+	  <MauiImage Remove="Resources\Images\nairobi.jpg" />
+	  <MauiImage Remove="Resources\Images\newdelhi.jpg" />
+	  <MauiImage Remove="Resources\Images\newyork.jpg" />
+	  <MauiImage Remove="Resources\Images\night1.jpg" />
+	  <MauiImage Remove="Resources\Images\notificationsicon.png" />
+	  <MauiImage Remove="Resources\Images\obninsk.jpg" />
+	  <MauiImage Remove="Resources\Images\oslo.jpg" />
+	  <MauiImage Remove="Resources\Images\ottawa.jpg" />
+	  <MauiImage Remove="Resources\Images\paris.jpg" />
+	  <MauiImage Remove="Resources\Images\pekin.jpg" />
+	  <MauiImage Remove="Resources\Images\pretoria.jpg" />
+	  <MauiImage Remove="Resources\Images\rain1.jpg" />
+	  <MauiImage Remove="Resources\Images\rainwithsun1.png" />
+	  <MauiImage Remove="Resources\Images\rainwiththunder.jpg" />
+	  <MauiImage Remove="Resources\Images\reykjavik.jpg" />
+	  <MauiImage Remove="Resources\Images\rio.jpg" />
+	  <MauiImage Remove="Resources\Images\riyadh.jpg" />
+	  <MauiImage Remove="Resources\Images\rome.jpg" />
+	  <MauiImage Remove="Resources\Images\rostovondon.jpg" />
+	  <MauiImage Remove="Resources\Images\santiago.jpg" />
+	  <MauiImage Remove="Resources\Images\seoul.jpg" />
+	  <MauiImage Remove="Resources\Images\shanghai.jpg" />
+	  <MauiImage Remove="Resources\Images\singapore.jpg" />
+	  <MauiImage Remove="Resources\Images\snowy1.jpg" />
+	  <MauiImage Remove="Resources\Images\stockholm.jpg" />
+	  <MauiImage Remove="Resources\Images\sunny1.jpg" />
+	  <MauiImage Remove="Resources\Images\sydney.jpg" />
+	  <MauiImage Remove="Resources\Images\tehran.jpg" />
+	  <MauiImage Remove="Resources\Images\tokyo.jpg" />
+	  <MauiImage Remove="Resources\Images\toronto.jpg" />
+	  <MauiImage Remove="Resources\Images\vienna.jpg" />
+	  <MauiImage Remove="Resources\Images\washington.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.jpg" />
+	  <None Remove="Resources\Audio\CloudyWithSun.mp3" />
+	  <None Remove="Resources\Audio\Dull.mp3" />
+	  <None Remove="Resources\Audio\Rain.mp3" />
+	  <None Remove="Resources\Audio\RainWithThunder.mp3" />
+	  <None Remove="Resources\Audio\Snowy.mp3" />
+	  <None Remove="Resources\Audio\sunny.mp3" />
+	  <None Remove="Resources\Audio\ThunderWithoutRain.mp3" />
+	  <None Remove="Resources\drawable\notificationsicon.png" />
+	  <None Remove="Resources\Splash\splash.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Include="Resources\drawable\notificationsicon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Images\copenhagen.jpg" />
+	  <MauiAsset Include="Resources\Images\manila.jpg" />
+	  <MauiAsset Include="Resources\Images\mexicocity.jpg" />
+	  <MauiAsset Include="Resources\Images\nairobi.jpg" />
+	  <MauiAsset Include="Resources\Images\pretoria.jpg" />
+	  <MauiAsset Include="Resources\Images\rome.jpg" />
+	  <MauiAsset Include="Resources\Images\tehran.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Images\madrid.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Audio\cloudy.mp3" />
+	  <MauiAsset Include="Resources\Audio\cloudywithsun.mp3" />
+	  <MauiAsset Include="Resources\Audio\dull.mp3" />
+	  <MauiAsset Include="Resources\Audio\rain.mp3" />
+	  <MauiAsset Include="Resources\Audio\rainwiththunder.mp3" />
+	  <MauiAsset Include="Resources\Audio\snowy.mp3" />
+	  <MauiAsset Include="Resources\Audio\sunny.mp3" />
+	  <MauiAsset Include="Resources\Audio\thunderwithoutrain.mp3" />
+	  <MauiAsset Include="Resources\Images\abuja.jpg" />
+	  <MauiAsset Include="Resources\Images\amsterdam.jpg" />
+	  <MauiAsset Include="Resources\Images\baghdad.jpg" />
+	  <MauiAsset Include="Resources\Images\bangkok.jpg" />
+	  <MauiAsset Include="Resources\Images\beijing.png" />
+	  <MauiAsset Include="Resources\Images\berlin.jpg" />
+	  <MauiAsset Include="Resources\Images\bern.jpg" />
+	  <MauiAsset Include="Resources\Images\bogota.jpg" />
+	  <MauiAsset Include="Resources\Images\brasilia.jpg" />
+	  <MauiAsset Include="Resources\Images\brussels.jpg" />
+	  <MauiAsset Include="Resources\Images\buenosaires.jpg" />
+	  <MauiAsset Include="Resources\Images\cairo.jpg" />
+	  <MauiAsset Include="Resources\Images\canberra.jpg" />
+	  <MauiAsset Include="Resources\Images\capetown.jpg" />
+	  <MauiAsset Include="Resources\Images\caracas.jpg" />
+	  <MauiAsset Include="Resources\Images\cloudnesspercents.png" />
+	  <MauiAsset Include="Resources\Images\cloudy1.jpg" />
+	  <MauiAsset Include="Resources\Images\cloudywithsun.jpg" />
+	  <MauiAsset Include="Resources\Images\delhi.jpg" />
+	  <MauiAsset Include="Resources\Images\dhaka.jpg" />
+	  <MauiAsset Include="Resources\Images\disablenotifications.png" />
+	  <MauiAsset Include="Resources\Images\dubai.jpg" />
+	  <MauiAsset Include="Resources\Images\dull.jpg" />
+	  <MauiAsset Include="Resources\Images\enablenotifications.png" />
+	  <MauiAsset Include="Resources\Images\hanoi.jpg" />
+	  <MauiAsset Include="Resources\Images\helsinki.jpg" />
+	  <MauiAsset Include="Resources\Images\humiditytab.png" />
+	  <MauiAsset Include="Resources\Images\islamabad.jpg" />
+	  <MauiAsset Include="Resources\Images\istanbul.jpg" />
+	  <MauiAsset Include="Resources\Images\jakarta.jpg" />
+	  <MauiAsset Include="Resources\Images\kabul.jpg" />
+	  <MauiAsset Include="Resources\Images\kamchatka.jpg" />
+	  <MauiAsset Include="Resources\Images\kualalumpur.jpg" />
+	  <MauiAsset Include="Resources\Images\lima.jpg" />
+	  <MauiAsset Include="Resources\Images\london.jpg" />
+	  <MauiAsset Include="Resources\Images\moscow.jpg" />
+	  <MauiAsset Include="Resources\Images\newdelhi.jpg" />
+	  <MauiAsset Include="Resources\Images\newyork.jpg" />
+	  <MauiAsset Include="Resources\Images\night1.jpg" />
+	  <MauiAsset Include="Resources\Images\notificationsicon.png" />
+	  <MauiAsset Include="Resources\Images\oslo.jpg" />
+	  <MauiAsset Include="Resources\Images\ottawa.jpg" />
+	  <MauiAsset Include="Resources\Images\paris.jpg" />
+	  <MauiAsset Include="Resources\Images\pekin.jpg" />
+	  <MauiAsset Include="Resources\Images\rain1.jpg" />
+	  <MauiAsset Include="Resources\Images\rainwithsun1.png" />
+	  <MauiAsset Include="Resources\Images\rainwiththunder.jpg" />
+	  <MauiAsset Include="Resources\Images\reykjavik.jpg" />
+	  <MauiAsset Include="Resources\Images\rio.jpg" />
+	  <MauiAsset Include="Resources\Images\riyadh.jpg" />
+	  <MauiAsset Include="Resources\Images\rostovondon.jpg" />
+	  <MauiAsset Include="Resources\Images\santiago.jpg" />
+	  <MauiAsset Include="Resources\Images\seoul.jpg" />
+	  <MauiAsset Include="Resources\Images\shanghai.jpg" />
+	  <MauiAsset Include="Resources\Images\singapore.jpg" />
+	  <MauiAsset Include="Resources\Images\snowy1.jpg" />
+	  <MauiAsset Include="Resources\Images\stockholm.jpg" />
+	  <MauiAsset Include="Resources\Images\sunny1.jpg" />
+	  <MauiAsset Include="Resources\Images\sydney.jpg" />
+	  <MauiAsset Include="Resources\Images\tokyo.jpg" />
+	  <MauiAsset Include="Resources\Images\toronto.jpg" />
+	  <MauiAsset Include="Resources\Images\vienna.jpg" />
+	  <MauiAsset Include="Resources\Images\washington.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Images\obninsk.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Plugin.LocalNotification" Version="12.0.1" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AboutUsPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="App.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CityChangePage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CityInformationPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CityPlacemarksPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CurrentWeatherPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="FiveDaysWeatherPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="FuturePlanPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SettingsPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TabMenuPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WeatherDetailsPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

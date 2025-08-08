@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:WeatherWhere.Services"
+             x:Class="WeatherWhere.FiveDaysWeatherPage" Title="Прогноз погоды">
+    <ContentPage.Content>
+        <ScrollView x:Name="scroll">
+            <Frame BackgroundColor="#AAFFFFFF">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnSpacing="10" RowSpacing="5" BackgroundColor="#AAFFFFFF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{DynamicResource CurrentCityNameResource}" VerticalOptions="CenterAndExpand" FontFamily="OpenSans" FontSize="{DynamicResource TextFontSize}" Grid.Column="0" HorizontalTextAlignment="Center" />
+                        <Image HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="weathertab.png" Grid.Column="1"/>
+                        <Image HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="thermometer.png" Grid.Column="2" />
+                        <Image HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="wind.png" Grid.Column="3"  />
+                    </Grid>
+                    <CollectionView x:Name="dataCol" ItemsSource="{Binding Data.List}" SelectionChanged="dataCol_SelectionChanged" SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" RowSpacing="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="{DynamicResource TextFontSize}" FontFamily="HelveticaNeue" Text="{Binding Dt,Converter={StaticResource unixConverter}}"  />
+                                    <Image Grid.Column="1" Source="{Binding Weather,Converter={StaticResource conv}}" HeightRequest="50" WidthRequest="50" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Grid.Column="2" VerticalOptions="CenterAndExpand" FontSize="{DynamicResource TextFontSize}" FontFamily="HelveticaNeue" Text="{Binding Main.Temp, StringFormat='{0} °C'}" />
+                                    <Label Grid.Column="3" VerticalOptions="CenterAndExpand" FontSize="{DynamicResource TextFontSize}" FontFamily="HelveticaNeue" Text="{Binding Wind.Speed, StringFormat='{0} м/с'}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    

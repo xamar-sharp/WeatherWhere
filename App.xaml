@@ -1,0 +1,85 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherWhere" xmlns:converters="clr-namespace:WeatherWhere.Converters"
+             x:Class="WeatherWhere.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:WeatherToIconConverter x:Key="conv"/>
+            <converters:UnixTimeToDateTimeConverter x:Key="unixConverter"/>
+            <converters:ImageStreamConverter x:Key="imgConv"/>
+            <x:String x:Key="CurrentCityNameResource">Moscow</x:String>
+            <x:Double x:Key="TitleFontSize">22</x:Double>
+            <x:Double x:Key="TextFontSize">12</x:Double>
+            <Style TargetType="Frame">
+                <Style.Setters>
+                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="BackgroundColor" Value="#66FFFFFF"/>
+                    <Setter Property="BorderColor" Value="#66FFFFFF"/>
+                    <Setter Property="Margin" Value="15"/>
+                    <Setter Property="Padding" Value="5"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="Label">
+                <Style.Setters>
+                    <Setter Property="TextColor" Value="Black"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="Entry">
+                <Style.Setters>
+                    <Setter Property="TextColor" Value="Black"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="SearchBar">
+                <Style.Setters>
+                    <Setter Property="TextColor" Value="Black"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BorderColor" Value="#DDFFFFFF"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BackgroundColor" Value="#CCFFFFFF"/>
+                <Setter Property="FontFamily" Value="OpenSans"/>
+            </Style>
+            <Style TargetType="Slider">
+                <Style.Setters>
+                    <Setter Property="ThumbColor" Value="Black"/>
+                    <Setter Property="MaximumTrackColor" Value="Black"/>
+                    <Setter Property="MinimumTrackColor" Value="White"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="2"/>
+            </Style>
+            <Style TargetType="StackLayout">
+                <Style.Setters>
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="2"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Style.Setters>
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="2"/>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Style.Setters>
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="2"/>
+                </Style.Setters>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:WeatherWhere.Services"
+             x:Class="WeatherWhere.CityInformationPage" Title="Информация о городе">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#AAFFFFFF">
+                    <VerticalStackLayout Spacing="10">
+                        <Label FontFamily="Roboto" Text="{DynamicResource CurrentCityNameResource}" FontSize="{DynamicResource TextFontSize}"/>
+                        <Label FontFamily="Roboto" Text="{Binding Population,StringFormat='Население: {0}'}" FontSize="{DynamicResource TextFontSize}"/>
+                        <Label FontFamily="Roboto" Text="{Binding Latitude,StringFormat='Широта: {0}'}" FontSize="{DynamicResource TextFontSize}"/>
+                        <Label FontFamily="Roboto" Text="{Binding Longitude,StringFormat='Долгота: {0}'}" FontSize="{DynamicResource TextFontSize}"/>
+                        <Button Text="Интересные места" FontSize="{DynamicResource TextFontSize}" Command="{Binding GoToPlacemarksPageCommand}"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
