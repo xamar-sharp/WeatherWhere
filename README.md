@@ -8,9 +8,9 @@
 
 ## Установка
 Выполните эту команду в командной строке Windows, если желаете модифицировать приложение или архивировать его в `.apk` или `.aab` формате:
-	```bash
-		git clone https://github.com/xamar-sharp/WeatherWhere.git
-	```
+```bash
+	git clone https://github.com/xamar-sharp/WeatherWhere.git
+```
 
 ## Использование
 Минимальная требуемая версия ОС для запуска приложения - `Android 5.0 (API Level 21 - Lollipop)`.
